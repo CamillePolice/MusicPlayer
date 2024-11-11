@@ -1,0 +1,77 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/php
+{
+	"name": "Tutteo",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		5147
+	],
+	"portsAttributes": {
+		"5147" : { 
+			"label": "Frontend",
+			"onAutoForward": "notify"
+		}
+	},
+	"containerEnv": {
+		"COMPOSER_PROCESS_TIMEOUT":"600"
+	},
+
+	// Partage des clés
+	// Mise en place d'un volume permettant de sauvegarder les commandes
+	"runArgs": [
+		"-e", "TZ=Europe/Paris",
+		"--mount",
+        "type=volume,source=bash_history_volume,target=/commandhistory",
+		"--mount",
+		"type=bind,source=${localEnv:HOME}/.bash_history,target=/commandhistory/.bash_history_host",
+		"-e", "HISTFILE=/commandhistory/.bash_history",
+		"--mount",
+		"type=bind,source=${localEnv:HOME}/.ssh,target=/home/vscode/.sshhost/"
+	],	
+	"postStartCommand": "mkdir -p /home/vscode/.ssh && cp -r /home/vscode/.sshhost/* /home/vscode/.ssh/ && chmod -R 600 /home/vscode/.ssh/*",
+
+	// Installation d'angular cli
+	"postCreateCommand": "sudo chown vscode:vscode -R /commandhistory && touch /commandhistory/.bash_history && echo /commandhistory/.bash_history_host >> /commandhistory/.bash_history",
+
+	// Extension complémentaire à celle déjà installées par les features
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"Vue.volar",
+                "Vue.vscode-typescript-vue-plugin",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "streetsidesoftware.code-spell-checker",
+                "christian-kohler.path-intellisense",
+                "formulahendry.auto-rename-tag",
+                "naumovs.color-highlight",
+                "antfu.iconify",
+                "mikestead.dotenv",
+				"eamodio.gitlens"
+			],
+            "settings": {
+                "editor.formatOnSave": false,
+                "editor.codeActionsOnSave": {
+					"source.fixAll.eslint": true
+                },
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "files.associations": {
+                    "*.vue": "vue"
+                }
+            }
+		}
+	}	
+
+}
