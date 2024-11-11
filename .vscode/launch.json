@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug front [chrome]",
+            "url": "http://localhost:11420",
+            "webRoot": "${workspaceFolder}/opvigil-frontend"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Debug front [Edge]",
+            "url": "http://localhost:11420",
+            "webRoot": "${workspaceFolder}/opvigil-frontend"
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Debug front [Firefox]",
+            "url": "http://localhost:11420",
+            "webRoot": "${workspaceFolder}/opvigil-frontend"
+        }
+    ]
+}
