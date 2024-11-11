@@ -42,7 +42,6 @@
 ],	
 "postStartCommand": "mkdir -p /home/node/.ssh && cp -r /home/node/.sshhost/* /home/node/.ssh/ && chmod -R 600 /home/node/.ssh/*",
 
-// Installation d'angular cli
 "postCreateCommand": "sudo chown node:node -R /commandhistory && touch /commandhistory/.bash_history && echo /commandhistory/.bash_history_host >> /commandhistory/.bash_history",
 
 // Extension complémentaire à celle déjà installées par les features
@@ -52,7 +51,6 @@
 			"GitHub.copilot",
 			"GitHub.copilot-chat",
 			"Vue.volar",
-			"Vue.vscode-typescript-vue-plugin",
 			"dbaeumer.vscode-eslint",
 			"esbenp.prettier-vscode",
 			"streetsidesoftware.code-spell-checker",
