@@ -8,22 +8,22 @@
             "type": "chrome",
             "request": "launch",
             "name": "Debug front [chrome]",
-            "url": "http://localhost:11420",
-            "webRoot": "${workspaceFolder}/opvigil-frontend"
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/tutteo-app"
         },
         {
             "type": "msedge",
             "request": "launch",
             "name": "Debug front [Edge]",
-            "url": "http://localhost:11420",
-            "webRoot": "${workspaceFolder}/opvigil-frontend"
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/tutteo-app"
         },
         {
             "type": "firefox",
             "request": "launch",
             "name": "Debug front [Firefox]",
-            "url": "http://localhost:11420",
-            "webRoot": "${workspaceFolder}/opvigil-frontend"
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/tutteo-app"
         }
     ]
 }

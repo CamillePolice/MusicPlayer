@@ -2,88 +2,113 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "serve",
+            "label": "Start Dev Server",
             "type": "npm",
-            "script": "serve",
+            "script": "dev",
+            "detail": "Runs the Vite development server",
+            "problemMatcher": [],
             "options": {
                 "cwd": "${workspaceFolder}/tutteo-app"
-            },
-            "isBackground": true,
-            "problemMatcher": {
-                "owner": "custom",
-                "pattern": {
-                    "regexp": "^$"
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": "Starting development server",
-                    "endsPattern": "App running at:"
-                }
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "group": "dev"
             }
         },
         {
-            "label": "build",
+            "label": "Build Project",
             "type": "npm",
             "script": "build",
+            "detail": "Runs type-check, then builds the project using Vite",
+            "problemMatcher": [],
             "options": {
                 "cwd": "${workspaceFolder}/tutteo-app"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "group": "dev"
             }
         },
         {
-            "label": "lint",
+            "label": "Preview Build",
+            "type": "npm",
+            "script": "preview",
+            "detail": "Previews the production build using Vite",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
+            }
+        },
+        {
+            "label": "Unit Tests",
+            "type": "npm",
+            "script": "test:unit",
+            "detail": "Runs unit tests using Vitest",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
+            }
+        },
+        {
+            "label": "E2E Tests",
+            "type": "npm",
+            "script": "test:e2e",
+            "detail": "Runs end-to-end tests using Playwright",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
+            }
+        },
+        {
+            "label": "Build Only",
+            "type": "npm",
+            "script": "build-only",
+            "detail": "Builds the project using Vite without type-check",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
+            }
+        },
+        {
+            "label": "Type Check",
+            "type": "npm",
+            "script": "type-check",
+            "detail": "Performs TypeScript type-checking using vue-tsc",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
+            }
+        },
+        {
+            "label": "Lint",
             "type": "npm",
             "script": "lint",
+            "detail": "Lints the codebase with ESLint and fixes issues where possible",
+            "problemMatcher": [],
             "options": {
                 "cwd": "${workspaceFolder}/tutteo-app"
-            },
-            "problemMatcher": ["$eslint-stylish"],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "group": "dev"
             }
         },
         {
-            "label": "install",
+            "label": "Format Code",
             "type": "npm",
-            "script": "install",
+            "script": "format",
+            "detail": "Formats code using Prettier",
+            "problemMatcher": [],
             "options": {
                 "cwd": "${workspaceFolder}/tutteo-app"
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "group": "dev"
             }
         },
         {
-            "label": "clean install",
-            "type": "shell",
-            "command": "cd tutteo-app && rm -rf node_modules && npm install",
-            "windows": {
-                "command": "cd tutteo-app && rmdir /s /q node_modules && npm install"
-            },
+            "label": "Start Storybook",
+            "type": "npm",
+            "script": "storybook",
+            "detail": "Starts the Storybook development server",
             "problemMatcher": [],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new",
-                "group": "dev"
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
+            }
+        },
+        {
+            "label": "Build Storybook",
+            "type": "npm",
+            "script": "build-storybook",
+            "detail": "Builds the Storybook for production",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tutteo-app"
             }
         }
     ]
