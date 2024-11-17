@@ -1,4 +1,5 @@
 import './assets/main.css'
+import Aura from '@primevue/themes/aura'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -20,6 +21,10 @@ app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(createPinia())
 app.use(router)
 
-app.use(PrimeVue)
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+  },
+})
 
 app.mount('#app')

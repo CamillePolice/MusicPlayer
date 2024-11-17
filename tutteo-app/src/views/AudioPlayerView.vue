@@ -10,11 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import { getMusics } from '../services/music.services';
 import { ref, onMounted } from 'vue';
-import Player from '../components/Player.vue';
-import Playlist from '../components/Playlist.vue';
-import type { Music } from '../types/music.types'
+import { getMusics } from '@/services/music.services';
+import type { Music } from '@/types/music.types'
+import Player from '@/components/Player.vue';
+import Playlist from '@/components/Playlist.vue';
 
 const musics = ref<Music[]>([]);
 const selectedSongs = ref<Music[]>([]);

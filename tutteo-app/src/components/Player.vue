@@ -19,6 +19,8 @@
       {{ currentSong?.artist || '' }}
     </p>
 
+    <Slider :sound="sound" :isPlaying="isPlaying" class="w-full max-w-md mb-6" />
+
     <!-- Playback Controls -->
     <div class="flex items-center gap-6">
       <!-- Previous Button -->
@@ -49,9 +51,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { Howl } from 'howler';
-import type { Music } from '../types/music.types'
+import type { Music } from '@/types/music.types'
+import Slider from '@/components/Slider.vue'
 
-// Props: Receive selected songs from the parent
 const { selectedSongs } = defineProps<{
   selectedSongs: Music[];
 }>();
@@ -63,7 +65,12 @@ const currentSong = ref<Music | null>(null);
 
 let sound: Howl | null = null;
 
-// Watch for changes in selectedSongs and reset the player
+/**
+ * Bind the checkbox list to the player
+ *
+ * Whenever a new list is sent, it loads the first song
+ * found in the list
+ */
 watch(
   () => selectedSongs,
   (newSongs) => {
@@ -73,16 +80,20 @@ watch(
       currentSong.value = newSongs[0];
       loadSong(currentSong.value);
     } else if (sound) {
-      stopPlayback();
+      resetPlayback();
     }
   },
   { immediate: true }
 );
 
-// Function to load a new song into the Howl instance
+/**
+ * Allows to start the audio
+ *
+ * @param song : the path to the music
+ */
 function loadSong(song: Music | null) {
   if (sound) {
-    sound.unload(); // Unload the current sound
+    sound.unload();
   }
   if (song) {
     sound = new Howl({
@@ -97,7 +108,6 @@ function loadSong(song: Music | null) {
   }
 }
 
-// Toggle play/pause
 const togglePlayPause = () => {
   if (!sound) return;
 
@@ -115,33 +125,35 @@ const playNext = () => {
   if (currentIndex.value < selectedSongs.length - 1) {
     currentIndex.value++;
     currentSong.value = selectedSongs[currentIndex.value];
-    loadSong(currentSong.value);
   } else {
     currentIndex.value = 0;
     currentSong.value = selectedSongs[0];
-    loadSong(currentSong.value);
   }
 
-  if (isPlaying.value) sound?.play();
+  loadSong(currentSong.value);
+
+  if (isPlaying.value) {
+    sound?.play();
+  }
 };
 
-// Play the previous song
 const playPrevious = () => {
   if (currentIndex.value > 0) {
     currentIndex.value--;
     currentSong.value = selectedSongs[currentIndex.value];
-    loadSong(currentSong.value);
   } else {
     currentIndex.value = selectedSongs.length - 1;
     currentSong.value = selectedSongs[selectedSongs.length - 1];
-    loadSong(currentSong.value);
   }
 
-  if (isPlaying.value) sound?.play();
+  loadSong(currentSong.value);
+
+  if (isPlaying.value) {
+    sound?.play();
+  }
 };
 
-// Stop playback and reset the player
-const stopPlayback = () => {
+const resetPlayback = () => {
   if (sound) {
     sound.stop();
     sound.unload();
