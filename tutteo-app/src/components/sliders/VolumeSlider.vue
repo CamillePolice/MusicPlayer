@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center w-full">
-    <!-- Sound Icon -->
-    <font-awesome-icon icon="volume-up" class="text-gray-300 mr-4 text-lg" />
+    <font-awesome-icon :icon="isMuted ? 'volume-mute' : 'volume-up'" class="text-gray-300 mr-4 text-lg cursor-pointer"
+      @click="muteOrUnMute" />
 
     <!-- Volume Slider -->
     <Slider id="volume-slider" v-model="volume" :min="0" :max="100" :step="1" class="flex-1"
@@ -18,11 +18,26 @@ const { initialVolume } = defineProps<{
 }>();
 
 const emit = defineEmits(['volume-change']);
+
 const volume = ref(initialVolume);
+const isMuted = ref(false);
+const previousVolume = ref(initialVolume);
+
+const muteOrUnMute = () => {
+  if (isMuted.value) {
+    volume.value = previousVolume.value;
+  } else {
+    previousVolume.value = volume.value;
+    volume.value = 0;
+  }
+  isMuted.value = !isMuted.value;
+  emitVolumeChange();
+}
 
 const emitVolumeChange = () => {
   emit('volume-change', volume.value);
 };
+
 </script>
 
 <style scoped></style>
