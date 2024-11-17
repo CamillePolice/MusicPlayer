@@ -1,9 +1,12 @@
 <template>
-  <div class="audio-player-view">
-    <div class="player">
+  <div class="audio-player-view flex flex-col md:flex-row h-screen">
+    <!-- Player Section -->
+    <div class="player flex-1 md:w-2/3 lg:w-3/4 p-4">
       <Player :selectedSongs="selectedSongs" />
     </div>
-    <div class="playlist">
+
+    <!-- Playlist Section -->
+    <div class="playlist flex-1 md:w-1/3 lg:w-1/4 p-4 flex items-center justify-center">
       <Playlist :musics="musics" @run-songs="handleRunSongs" />
     </div>
   </div>
@@ -30,42 +33,47 @@ const handleRunSongs = (songs: Music[]) => {
 </script>
 
 <style scoped>
+/* Custom styles for the component */
 .audio-player-view {
   display: flex;
-  /* Enable horizontal layout */
+  flex-direction: column;
   height: 100vh;
-  /* Full page height */
 }
 
-.player {
-  flex: 1;
-  /* Take up half the horizontal space */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Example background color */
-}
-
-.playlist {
-  flex: 1;
-  /* Take up the other half */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Example background color */
-}
-
+/* Small screens: stack the player and playlist */
 @media (max-width: 768px) {
   .audio-player-view {
     flex-direction: column;
   }
+}
 
-  .player,
+/* Medium and larger screens: player and playlist side-by-side */
+@media (min-width: 768px) {
+  .audio-player-view {
+    flex-direction: row;
+  }
+
+  .player {
+    width: 66.67%;
+    /* 2/3 width */
+  }
+
   .playlist {
-    flex: unset;
-    width: 100%;
-    height: 50vh;
-    /* Split height in two */
+    width: 33.33%;
+    /* 1/3 width */
+  }
+}
+
+/* Large screens: adjust proportions */
+@media (min-width: 1024px) {
+  .player {
+    width: 75%;
+    /* 3/4 width */
+  }
+
+  .playlist {
+    width: 25%;
+    /* 1/4 width */
   }
 }
 </style>
