@@ -6,7 +6,14 @@ import { createPinia } from 'pinia'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faPlay, faPause, faForward, faBackward } from '@fortawesome/free-solid-svg-icons'
+import {
+  faPlay,
+  faPause,
+  faForward,
+  faBackward,
+  faVolumeUp,
+  faVolumeMute,
+} from '@fortawesome/free-solid-svg-icons'
 
 import App from './App.vue'
 import router from './router'
@@ -14,7 +21,7 @@ import PrimeVue from 'primevue/config'
 
 const app = createApp(App)
 
-library.add(faPlay, faPause, faForward, faBackward)
+library.add(faPlay, faPause, faForward, faBackward, faVolumeUp, faVolumeMute)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 

@@ -19,7 +19,9 @@
       {{ currentSong?.artist || '' }}
     </p>
 
-    <Slider :sound="sound" :isPlaying="isPlaying" class="w-full max-w-md mb-6" />
+    <TimeSlider :sound="sound" :isPlaying="isPlaying" class="w-full max-w-md mb-6" />
+
+    <VolumeSlider :initialVolume="volume" @volume-change="updateVolume" class="w-full max-w-md mb-6" />
 
     <!-- Playback Controls -->
     <div class="flex items-center gap-6">
@@ -52,7 +54,8 @@
 import { ref, watch } from 'vue';
 import { Howl } from 'howler';
 import type { Music } from '@/types/music.types'
-import Slider from '@/components/Slider.vue'
+import TimeSlider from '@/components/sliders/TimeSlider.vue'
+import VolumeSlider from '@/components/sliders/VolumeSlider.vue'
 
 const { selectedSongs } = defineProps<{
   selectedSongs: Music[];
@@ -62,6 +65,7 @@ const { selectedSongs } = defineProps<{
 const isPlaying = ref(false);
 const currentIndex = ref(0);
 const currentSong = ref<Music | null>(null);
+const volume = ref(50);
 
 let sound: Howl | null = null;
 
@@ -107,6 +111,16 @@ function loadSong(song: Music | null) {
     });
   }
 }
+
+/**
+ * Update the volume of the player
+ */
+const updateVolume = (newVolume: number) => {
+  volume.value = newVolume;
+  if (sound) {
+    sound.volume(volume.value / 100);
+  }
+};
 
 const togglePlayPause = () => {
   if (!sound) return;
