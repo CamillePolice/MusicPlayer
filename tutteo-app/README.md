@@ -47,3 +47,9 @@ pnpm test:unit
 ```sh
 pnpm lint
 ```
+
+### Run storybook [Storybook](https://storybook.js.org)
+
+```sh
+pnpm run storybook
+```
