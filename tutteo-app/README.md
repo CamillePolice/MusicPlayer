@@ -1,7 +1,5 @@
 # tutteo-app
 
-This template should help get you started developing with Vue 3 in Vite.
-
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
@@ -13,6 +11,11 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vite.dev/config/).
+
+## On VSCode
+
+Open the project in the devcontainer.
+Run the task : "Start dev serve"
 
 ## Project Setup
 
@@ -30,6 +33,7 @@ pnpm dev
 
 ```sh
 pnpm build
+npx serve dist
 ```
 
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
