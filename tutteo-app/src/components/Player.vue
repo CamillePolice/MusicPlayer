@@ -1,15 +1,16 @@
 <template>
   <div class="flex flex-col items-center justify-center h-screen text-white">
-    <!-- Music Cover -->
-    <div v-if="currentSong" class="mb-6">
-      <img :src="currentSong.coverPath" alt="Cover for {{ currentSong.songName }}"
-        class="w-48 h-48 rounded-md shadow-lg object-cover" />
-    </div>
-    <div v-else class="mb-6">
-      <div class="w-48 h-48 rounded-md shadow-lg bg-gray-800 flex items-center justify-center">
-        <p class="text-gray-400">No Song Selected</p>
+    <transition name="slide-fade" mode="out-in">
+      <div v-if="currentSong" :key="currentIndex" class="mb-6">
+        <img :src="currentSong.coverPath" alt="Cover for {{ currentSong.songName }}"
+          class="w-48 h-48 rounded-md shadow-lg object-cover" />
       </div>
-    </div>
+      <div v-else key="no-song" class="mb-6">
+        <div class="w-48 h-48 rounded-md shadow-lg bg-gray-800 flex items-center justify-center">
+          <p class="text-gray-400">No Song Selected</p>
+        </div>
+      </div>
+    </transition>
 
     <!-- Song Info -->
     <h1 class="text-lg font-semibold mb-2 text-center">
@@ -184,4 +185,29 @@ const resetPlayback = () => {
 </script>
 
 
-<style scoped></style>
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-fade-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-fade-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-fade-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-fade-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+</style>
