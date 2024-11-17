@@ -105,6 +105,10 @@ function loadSong(song: Music | null) {
       onload: () => {
         console.log(`Loaded: ${song.songName}`);
       },
+      onend: () => {
+        console.log(`Ended song: ${song.songName}`);
+        playNext();
+      },
       onloaderror: (id, error) => {
         console.error('Failed to load audio:', error);
       },
