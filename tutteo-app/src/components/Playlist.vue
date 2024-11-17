@@ -17,9 +17,9 @@
     <!-- Center the button -->
     <div class="flex justify-center mt-4">
       <button
-        class="validate-button px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+        class="validate-button px-4 py-2 bg-gray-400 text-white rounded shadow hover:bg-gray-700 focus:ring-2 focus:ring-blue-500"
         @click="validatePlaylist">
-        Validate the Playlist
+        Listen the Playlist
       </button>
     </div>
   </div>
